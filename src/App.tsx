@@ -75,7 +75,9 @@ export default function App() {
       <main className="p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 pb-12">
         {IMAGES.map((img, idx) => (
           <motion.div
-            layoutId={`card-container-${img.id}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: (idx % 12) * 0.03, duration: 0.4 }}
             key={img.id}
             onClick={() => setSelectedIndex(idx)}
             className="group relative cursor-pointer bg-white p-2 md:p-2.5 shadow-sm block transition-transform duration-300 hover:-translate-y-1"
@@ -139,7 +141,10 @@ export default function App() {
             </button>
 
             <motion.div
-              layoutId={`card-container-${IMAGES[selectedIndex].id}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
               className="relative flex flex-col items-center justify-center w-full max-w-5xl max-h-[85vh]"
             >
